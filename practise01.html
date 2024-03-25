@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<style>
+    .content{
+        background: #dff8a1;
+        border-style: solid;
+        border-width: 20px;
+        border-radius: 20px;
+        border-color: rgb(111, 163, 120);
+        width: 200px;
+        padding: 20px;
+        margin: 0 auto;
+        align-items: center;
+    }
+    body {
+      background-color: rgb(218, 211, 202);  
+      align-items: center;
+    }
+    h2 {
+        align-items: center;
+        font-size: medium;
+        text-align: center;
+    }
+    form {
+        align-content: center;
+        margin-top: 20px;
+    }
+    p {
+        text-align: center;
+    }
+    label {
+        text-align: center;
+    }
+    input[type="text"], input[type="button"] {
+        margin-top: 10px;
+        align-items: center;
+    }
+    .oparection {
+        border-style: ridge;
+        border-color: #dff8a1;
+        border-radius: 5px;
+        align-items: start;
+        margin: 5px;
+        background-color: rgb(119, 110, 110);
+    }
+    input[type="button"] {
+        width: 90%;
+        align-items: center;
+        border: #755103;
+        border-width: 5px;
+        background-color: rgb(134, 123, 109);
+    }
+
+    input[type="radio"] {
+        padding: auto;
+    }
+</style>
+<body>
+    <h2>Calculator</h2>
+    <div class="content">
+        <form>
+            <label for="num1">Faster Value</label>
+            <input type="text" id="num1" name="num1" value=" " maxlength="10" oninput="validateInput(this)"><br>
+            <label for="num2">Second Value</label>
+            <input type="text" id="num2" name="num2" value=" " maxlength="10" oninput="validateInput(this)"><br>
+    
+            <p></p>
+            <div class="oparection">
+                <p>Select Oparection</p>
+                <input type="radio" id="html" name="opSymbol" value="+">
+                <label for="html">+</label>
+                <input type="radio" id="html" name="opSymbol" value="-">
+                <label for="html">-</label>
+                <input type="radio" id="html" name="opSymbol" value="*">
+                <label for="html">*</label>
+                <input type="radio" id="html" name="opSymbol" value="/">
+                <label for="html">/</label>
+                <p></p>
+            </div>
+                
+            <input type="button" value="=" onclick="calculate()">
+            <input type="text" id="result" name="result" value="" disabled>
+        </form>
+    
+        <script>
+            function validateInput(input) {
+                input.value = input.value.replace(/[^0-9.]/g, ''); // Allow only numeric values and decimal point
+
+                if (input.value.length > 10) {
+                    input.value = input.value.slice(0, 10); // Truncate input to 10 characters
+                }
+            }
+
+            function calculate() {
+                var num1 = parseInt(document.getElementById('num1').value);
+                var num2 = parseInt(document.getElementById('num2').value);
+                var opSymbol = document.querySelector('input[name="opSymbol"]:checked').value;
+                var result;
+    
+                switch (opSymbol) {
+                    case '+':
+                    result = num1 + num2;
+                        break;
+    
+                    case '-':
+                    result = num1 - num2;
+                        break;
+                    
+                    case '*':
+                    result = num1 * num2;
+                        break;
+    
+                    case '/':
+                    result = num1 / num2;
+                        break;
+    
+                    default:
+                        text = "Enter a valid oparation";
+                }
+                //document.textContent(result);
+                document.getElementById('result').value = result;
+            }
+    
+        </script>
+    </div>
+</body>
+</html>
